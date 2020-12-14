@@ -16,6 +16,52 @@ const colorStyles = css`
     `;
   }}
 `;
+const sizees = {
+  large: {
+    height: "3rem",
+    fontSize: "1.25rem",
+  },
+  medium: {
+    height: "2.25rem",
+    fontSize: "1rem",
+  },
+  small: {
+    height: "1.75rem",
+    fontSize: "0.875rem",
+  },
+};
+
+const sizeStyles = css`
+  ${(props) => {
+    return (
+      props.size === "large" &&
+      css`
+        height: 3rem;
+        font-size: 1.25rem;
+      `
+    );
+  }}
+
+  ${(props) => {
+    return (
+      props.size === "medium" &&
+      css`
+        height: 2.25rem;
+        font-size: 1rem;
+      `
+    );
+  }}
+
+  ${(props) => {
+    return (
+      props.size === "smaill" &&
+      css`
+        height: 1.75rem;
+        font-size: 0.875rem;
+      `
+    );
+  }}
+`;
 
 const StyleButton = styled.button`
   display: inline-flex;
@@ -32,6 +78,8 @@ const StyleButton = styled.button`
   height: 2.25rem;
   font-size: 1rem;
 
+  ${sizeStyles}
+
   ${colorStyles}
 
   & + & {
@@ -39,12 +87,17 @@ const StyleButton = styled.button`
   }
 `;
 
-function Buttons({ children, color }) {
-  return <StyleButton color={color}>{children}</StyleButton>;
+function Buttons({ children, color, size }) {
+  return (
+    <StyleButton color={color} size={size}>
+      {children}
+    </StyleButton>
+  );
 }
 
 Buttons.defaultProps = {
   color: "blue",
+  size: "medium",
 };
 
 export default Buttons;
