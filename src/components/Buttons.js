@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { darken, lighten } from "polished";
 
 const StyleButton = styled.button`
-  
   display: inline-flex;
   align-items: center;
   outline: none;
@@ -19,20 +19,18 @@ const StyleButton = styled.button`
 
   background: #228be6;
   &:hover {
-    background: #339af0;
+  background: ${lighten(0.1, '#228be6')};
   }
   &:active {
-    background: #1c7ed6;
+    background:${darken(0.1, '#228be6')};
   }
-
-  
 
   & + & {
     margin-left: 1rem;
   }
 `;
 
-function Buttons({children}) {
+function Buttons({ children }) {
   return <StyleButton>{children}</StyleButton>;
 }
 
