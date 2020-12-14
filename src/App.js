@@ -35,7 +35,7 @@ function App() {
         <ButtonGroup>
           <Buttons size="large">BUTTON</Buttons>
           <Buttons color="gray">BUTTON</Buttons>
-          <Buttons size="smaill" color="pink">BUTTON</Buttons>
+          <Buttons size="small" color="pink">BUTTON</Buttons>
         </ButtonGroup>
       </AppBlock>
     </ThemeProvider>
