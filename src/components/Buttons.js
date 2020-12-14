@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const StyleButton = styled.button`
+  
   display: inline-flex;
+  align-items: center;
   outline: none;
   border: none;
   border-radius: 4px;
@@ -22,6 +24,8 @@ const StyleButton = styled.button`
   &:active {
     background: #1c7ed6;
   }
+
+  
 
   & + & {
     margin-left: 1rem;
