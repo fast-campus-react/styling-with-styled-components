@@ -32,35 +32,11 @@ const sizees = {
 };
 
 const sizeStyles = css`
-  ${(props) => {
-    return (
-      props.size === "large" &&
-      css`
-        height: 3rem;
-        font-size: 1.25rem;
-      `
-    );
-  }}
+  ${({size})=>css`
+    height:${sizees[size].height};
+    font-size:${sizees[size].fontSize};
 
-  ${(props) => {
-    return (
-      props.size === "medium" &&
-      css`
-        height: 2.25rem;
-        font-size: 1rem;
-      `
-    );
-  }}
-
-  ${(props) => {
-    return (
-      props.size === "smaill" &&
-      css`
-        height: 1.75rem;
-        font-size: 0.875rem;
-      `
-    );
-  }}
+  `};
 `;
 
 const StyleButton = styled.button`
