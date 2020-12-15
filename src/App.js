@@ -1,7 +1,8 @@
-import logo from "./logo.svg";
+import { useState } from "react";
 import "./App.css";
 import styled, { css, ThemeProvider } from "styled-components";
 import Buttons from "./components/Buttons";
+import Dialog from "./components/Dialog";
 
 const AppBlock = styled.div`
   width: 512px;
@@ -24,31 +25,40 @@ const palette = {
 };
 
 function App() {
+  const [dialog, setDialog] = useState(false);
+  const onClick = () => {
+    setDialog(true);
+  };
+
+  const onConfirm = () => {
+    setDialog(false);
+  };
+
+  const onCancel = () => {
+    setDialog(false);
+  };
+
   return (
     <ThemeProvider theme={{ palette }}>
-      <AppBlock>
-        <ButtonGroup>
-          <Buttons>BUTTON</Buttons>
-          <Buttons color="gray">BUTTON</Buttons>
-          <Buttons color="pink">BUTTON</Buttons>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Buttons size="large">BUTTON</Buttons>
-          <Buttons color="gray">BUTTON</Buttons>
-          <Buttons size="small" color="pink">BUTTON</Buttons>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Buttons size="large" outline >BUTTON</Buttons>
-          <Buttons color="gray" outline >BUTTON</Buttons>
-          <Buttons size="small" color="pink" outline >BUTTON</Buttons>
-        </ButtonGroup>
-
-        <ButtonGroup>
-          <Buttons size="large" fullWidth >BUTTON</Buttons>
-          <Buttons size="large" color="gray" fullWidth >BUTTON</Buttons>
-          <Buttons size="large" color="pink" fullWidth >BUTTON</Buttons>
-        </ButtonGroup>
-      </AppBlock>
+      <>
+        <AppBlock>
+          <ButtonGroup>
+            <Buttons onClick={onClick} color="pink">
+              삭제
+            </Buttons>
+          </ButtonGroup>
+        </AppBlock>
+        <Dialog
+          title="정말로 삭제하시겟습니까?"
+          confirmText="삭제"
+          cancelText="취소 "
+          visible={dialog}
+          onConfirm={onConfirm}
+          onCancel={onCancel}
+        >
+          데이터를 정말로 삭제하시겠습니까 ?
+        </Dialog>
+      </>
     </ThemeProvider>
   );
 }
