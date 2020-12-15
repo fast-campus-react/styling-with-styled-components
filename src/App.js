@@ -37,6 +37,17 @@ function App() {
           <Buttons color="gray">BUTTON</Buttons>
           <Buttons size="small" color="pink">BUTTON</Buttons>
         </ButtonGroup>
+        <ButtonGroup>
+          <Buttons size="large" outline >BUTTON</Buttons>
+          <Buttons color="gray" outline >BUTTON</Buttons>
+          <Buttons size="small" color="pink" outline >BUTTON</Buttons>
+        </ButtonGroup>
+
+        <ButtonGroup>
+          <Buttons size="large" fullWidth >BUTTON</Buttons>
+          <Buttons size="large" color="gray" fullWidth >BUTTON</Buttons>
+          <Buttons size="large" color="pink" fullWidth >BUTTON</Buttons>
+        </ButtonGroup>
       </AppBlock>
     </ThemeProvider>
   );
