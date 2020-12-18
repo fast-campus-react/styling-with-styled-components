@@ -1,4 +1,5 @@
-import styled, { keyframes } from "styled-components";
+import { useState, useEffect } from "react";
+import styled, { keyframes, css } from "styled-components";
 import Button from "./Buttons";
 
 const fadeIn = keyframes`
@@ -10,12 +11,30 @@ const fadeIn = keyframes`
   }
 `;
 
+const fadeOut = keyframes`
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0
+  }
+`;
+
 const slideUp = keyframes`
   from{
     transform:translateY(200px);
   }
   to{
     transform:translateY(0px);
+  }
+`;
+
+const slideDown = keyframes`
+  from{
+    transform:translateY(0px);
+  }
+  to{
+    transform:translateY(200px);
   }
 `;
 
@@ -34,7 +53,12 @@ const DarkBackgorund = styled.div`
   animation-timing-function: ease-out;
   animation-name: ${fadeIn};
   animation-fill-mode: forwards;
-  
+
+  ${(props) =>
+    props.disappear &&
+    css`
+      animation-name: ${fadeOut};
+    `}
 `;
 
 const DialogBlock = styled.div`
@@ -47,6 +71,12 @@ const DialogBlock = styled.div`
   animation-timing-function: ease-out;
   animation-name: ${slideUp};
   animation-fill-mode: forwards;
+
+  ${(props) =>
+    props.disappear &&
+    css`
+      animation-name: ${slideDown};
+    `}
 
   h3 {
     margin: 0;
@@ -79,11 +109,24 @@ function Dialog({
   onConfirm,
   onCancel,
 }) {
-  if (!visible) return null;
+  const [animate, setAnimate] = useState(false);
+  const [localVisible, setLocalvisible] = useState(visible);
+
+  useEffect(() => {
+    if (localVisible && !visible) {
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 250);
+    }
+
+    setLocalvisible(visible);
+  }, [localVisible, visible]);
+
+  if (!localVisible && !animate) return null;
+//if (!visible ) return null;
 
   return (
-    <DarkBackgorund>
-      <DialogBlock>
+    <DarkBackgorund disappear={!visible}>
+      <DialogBlock disappear={!visible}>
         <h3>{title}</h3>
         <p>{children}</p>
         <ButtonGroup>
